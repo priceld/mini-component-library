@@ -33,8 +33,14 @@ const Wrapper = styled.div`
 const ProgressIndicator = styled.div`
   width: ${p => p.value}%;
   height: 100%;
-  border-radius: 4px;
   background-color: ${COLORS.primary};
+`;
+
+const IndicatorWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
 `;
 
 function clampValue(min, max, value) {
@@ -52,7 +58,9 @@ const ProgressBar = ({ value, size }) => {
       aria-valuemin="0"
       aria-valuemax="100"
       style={styles}>
-      <ProgressIndicator value={clampedValue}></ProgressIndicator>
+      <IndicatorWrapper>
+        <ProgressIndicator value={clampedValue}></ProgressIndicator>
+      </IndicatorWrapper>
     </Wrapper>
   );
 };
