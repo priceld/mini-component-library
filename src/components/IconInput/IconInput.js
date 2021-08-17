@@ -6,6 +6,17 @@ import { COLORS } from '../../constants';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
+const STYLES = {
+  small: {
+    '--font-size': '14px',
+    '--border-width': '1px',
+  },
+  large: {
+    '--font-size': '18px',
+    '--border-width': '2px',
+  },
+};
+
 const IconInput = ({
   label,
   icon,
@@ -13,7 +24,45 @@ const IconInput = ({
   size,
   placeholder,
 }) => {
-  return 'TODO';
+  const styles = {
+    ...STYLES[size],
+    '--width': width + 'px',
+  };
+  return (
+    <Wrapper style={styles}>
+      <IconWrapper style={{ '--size': 16 + 'px' }}>
+        <Icon id={icon} size={16} />
+      </IconWrapper>
+      <Input type="text" />
+    </Wrapper>
+  );
 };
+
+const Wrapper = styled.div`
+  display: inline-block;
+  position: relative;
+  width: var(--width);
+`;
+
+const Input = styled.input`
+  width: 100%;
+  font-size: var(--font-size);
+  padding-left: 20px;
+
+  outline-offset: 2px;
+
+  border: none;
+  border-bottom: var(--border-width) solid black;
+`;
+
+const IconWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: var(--size);
+  height: var(--size);
+`;
 
 export default IconInput;
