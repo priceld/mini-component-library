@@ -30,10 +30,11 @@ const IconInput = ({
   };
   return (
     <Wrapper style={styles}>
+      <VisuallyHidden>{label}</VisuallyHidden>
       <IconWrapper style={{ '--size': 16 + 'px' }}>
         <Icon id={icon} size={16} />
       </IconWrapper>
-      <Input type="text" />
+      <Input type="text" placeholder={placeholder}/>
     </Wrapper>
   );
 };
@@ -42,6 +43,11 @@ const Wrapper = styled.div`
   display: inline-block;
   position: relative;
   width: var(--width);
+
+  color: ${COLORS.gray700};
+  &:hover {
+    color: ${COLORS.black};
+  }
 `;
 
 const Input = styled.input`
@@ -53,6 +59,12 @@ const Input = styled.input`
 
   border: none;
   border-bottom: var(--border-width) solid black;
+
+  color: inherit;
+
+  &:placeholder-shown {
+    color: ${COLORS.gray500};
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -63,6 +75,7 @@ const IconWrapper = styled.div`
   margin: auto;
   width: var(--size);
   height: var(--size);
+  pointer-events: none;
 `;
 
 export default IconInput;
